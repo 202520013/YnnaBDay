@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Game</title>
+  <style>
+    body {
+      font-family: 'Pixel', monospace;
+      background-image: url('YNNA.jpeg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      text-align: center;
+      color: white;
+    }
+    .container {
+      margin-top: 100px;
+    }
+    #congrats {
+      color: pink;
+      font-size: 32px;
+      font-family: 'Courier New', Courier, monospace;
+      display: none;
+    }
+    #continueBtn, #wishMsg, #timer, #finalMsg, #cake, #closingMessage {
+      display: none;
+    }
+    #cake {
+      margin-top: 20px;
+      font-size: 20px;
+      padding: 20px;
+      background: pink;
+      border-radius: 20px;
+      color: brown;
+    }
+    #closingMessage {
+      margin-top: 30px;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      border-radius: 15px;
+      font-size: 18px;
+      color: #fff;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    img.pixelated {
+      image-rendering: pixelated;
+      width: 300px;
+      height: auto;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="birthday_music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="container">
+    <h2>🎉 Welcome to Ynna's Birthday Game! 🎉</h2>
+    <p>Enter your name:</p>
+    <input type="text" id="name" />
+    <p>Enter your age:</p>
+    <input type="number" id="age" />
+    <br/><br/>
+    <button onclick="startGame()">Start</button>
+
+    <h1 id="congrats">🎊 CONGRATULATIONS! 🎊</h1>
+    <button id="continueBtn" onclick="showWish()">Continue</button>
+
+    <div id="wishMsg">
+      <p>Close your eyes (no cheating) and ask for 3 wishes,<br> and watch them come true ✨</p>
+    </div>
+
+    <div id="timer">10</div>
+    <div id="finalMsg">
+      <div id="cake">
+        🎂 Happy Birthday Ynna 🎂<br><br>
+        Sobrang mahal kita, pinag-code kita ng greetings ko letche 💖
+      </div>
+      <img class="pixelated" src="IMG_0377.jpeg" alt="Birthday Girl" />
+    </div>
+
+    <div id="closingMessage">
+      <p>
+        🎉 Congratulations! You are officially a legally blonde! 💅<br><br>
+        I love you, bes. Sobrafer mahal kita, pinag-code kita pisti hahaha. Enjoy your day kahit may pasok! I am proud of you. Nandito lang kami palagi. PADAYON! 💚<br><br>
+        Continue being a good leader and server of the environment. 🌱 Marami akong message, teng, kaso ang hirap na i-add sa codes awa nalang saken bah... 😩
+      </p>
+    </div>
+  </div>
+
+  <script>
+    function startGame() {
+      const name = document.getElementById('name').value;
+      const age = document.getElementById('age').value;
+      if (!name || !age) {
+        alert("Please enter your name and age first!");
+        return;
+      }
+      document.getElementById('congrats').style.display = 'block';
+      document.getElementById('continueBtn').style.display = 'inline-block';
+    }
+
+    function showWish() {
+      document.getElementById('congrats').style.display = 'none';
+      document.getElementById('continueBtn').style.display = 'none';
+      document.getElementById('wishMsg').style.display = 'block';
+      setTimeout(startTimer, 3000);
+    }
+
+    function startTimer() {
+      document.getElementById('wishMsg').style.display = 'none';
+      let count = 10;
+      const timerDisplay = document.getElementById('timer');
+      timerDisplay.style.display = 'block';
+      const interval = setInterval(() => {
+        timerDisplay.innerText = count;
+        count--;
+        if (count < 0) {
+          clearInterval(interval);
+          timerDisplay.style.display = 'none';
+          document.getElementById('finalMsg').style.display = 'block';
+          document.getElementById('closingMessage').style.display = 'block';
+        }
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
